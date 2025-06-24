@@ -1,3 +1,8 @@
+### redis string 조회 (getByString)
+GET {{kotlin-api}}/api/v1/redis/string/steven
+Content-Type: application/json
+
+
 ### redis string 저장 (saveByString)
 POST {{kotlin-api}}/api/v1/redis/string
 Content-Type: application/json

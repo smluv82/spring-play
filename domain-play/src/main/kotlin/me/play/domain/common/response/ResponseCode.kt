@@ -11,7 +11,7 @@ enum class ResponseCode(
     // common
     SUCCESS(2000, HttpStatus.OK),
     INVALID_PARAMETER(4000, BAD_REQUEST, "invalid_parameters"),
-    NOT_FOUND_ID(4001, HttpStatus.NOT_FOUND, "DB의 해당하는 데이터가 존재하지 않습니다."),
+    NOT_FOUND_ID(4001, HttpStatus.NOT_FOUND, "저장소(store)의 해당하는 데이터가 존재하지 않습니다."),
     UNAUTHORIZED(4010, HttpStatus.UNAUTHORIZED),
     FORBIDDEN(4030, HttpStatus.FORBIDDEN, "forbidden"),
     NOT_FOUND(4040, HttpStatus.NOT_FOUND),

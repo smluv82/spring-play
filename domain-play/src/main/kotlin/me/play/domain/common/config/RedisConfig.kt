@@ -35,8 +35,6 @@ class RedisConfig(
         connectionFactory: RedisConnectionFactory,
         objectMapper: ObjectMapper,
     ): RedisTemplate<String, Any> {
-//    ): RedisTemplate<String, Any> {
-//        return RedisTemplate<String, Any>().apply {
         return RedisTemplate<String, Any>().apply {
             this.connectionFactory = connectionFactory
             this.keySerializer = StringRedisSerializer()
