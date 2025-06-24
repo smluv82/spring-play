@@ -1,0 +1,13 @@
+version: "3"
+services:
+  redis:
+    container_name: redis_spring_play
+    image: redis:8.0.2
+    ports:
+      - "6389:6379"
+    networks:
+      - localnet
+
+
+networks:
+  localnet:

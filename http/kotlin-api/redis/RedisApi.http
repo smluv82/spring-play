@@ -1,0 +1,9 @@
+### redis string 저장 (saveByString)
+POST {{kotlin-api}}/api/v1/redis/string
+Content-Type: application/json
+
+{
+  "key": "steven",
+  "value": "test",
+  "ttl": 10
+}
