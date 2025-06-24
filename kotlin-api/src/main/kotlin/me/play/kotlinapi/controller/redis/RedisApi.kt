@@ -1,4 +1,4 @@
-package me.play.kotlinapi.api.redis
+package me.play.kotlinapi.controller.redis
 
 import io.swagger.v3.oas.annotations.Operation
 import me.play.domain.common.response.ApiResponse
