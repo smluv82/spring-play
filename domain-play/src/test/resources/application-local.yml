@@ -1,0 +1,25 @@
+server:
+  port: 8020
+
+spring:
+  application:
+    name: kotlin-api
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
+
+  data:
+    redis:
+      host: localhost
+      port: 6389
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [${spring.application.name:}, traceId:%X{traceId:-}, spanId:%X{spanId:-}] %-5level [%thread] %logger{36} - %msg%n"
