@@ -1,8 +1,10 @@
 package me.play.domain.common.config
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import me.play.domain.utils.redisObjectMapper
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.Bean
@@ -33,14 +35,11 @@ class RedisConfig(
     @Bean
     fun redisTemplate(
         connectionFactory: RedisConnectionFactory,
-        objectMapper: ObjectMapper,
     ): RedisTemplate<String, Any> {
-//    ): RedisTemplate<String, Any> {
-//        return RedisTemplate<String, Any>().apply {
         return RedisTemplate<String, Any>().apply {
             this.connectionFactory = connectionFactory
             this.keySerializer = StringRedisSerializer()
-            this.valueSerializer = GenericJackson2JsonRedisSerializer(objectMapper)
+            this.valueSerializer = GenericJackson2JsonRedisSerializer(redisObjectMapper())
             this.hashKeySerializer = StringRedisSerializer()
             this.hashValueSerializer = StringRedisSerializer()
         }
@@ -51,7 +50,7 @@ class RedisConfig(
         val typeValidator = BasicPolymorphicTypeValidator.builder().allowIfSubType(Object::class.java).build()
         val om = objectMapper.copy()
         om.registerModules(KotlinModule.Builder().build())
-        om.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.NON_FINAL)
+        om.activateDefaultTyping(typeValidator, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY)
 
         val redisCacheConfiguration: RedisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
             .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(StringRedisSerializer()))

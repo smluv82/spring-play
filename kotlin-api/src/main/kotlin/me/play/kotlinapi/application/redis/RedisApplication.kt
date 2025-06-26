@@ -1,18 +1,23 @@
 package me.play.kotlinapi.application.redis
 
+import me.play.domain.common.exception.CommonException
+import me.play.domain.common.response.ResponseCode
+import me.play.domain.service.redis.RedisService
+import me.play.kotlinapi.model.redis.RedisModelMapper
 import me.play.kotlinapi.model.redis.RedisStringRequest
-import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Service
-import java.time.Duration
-import java.time.temporal.ChronoUnit
 
 @Service
 class RedisApplication(
-    private val redisTemplate: RedisTemplate<String, String>,
+    private val redisService: RedisService
 ) {
 
+    fun getByString(key: String): String {
+        return redisService.getByString(key) ?: throw CommonException(ResponseCode.NOT_FOUND_ID)
+    }
 
     fun saveByString(request: RedisStringRequest) {
-        redisTemplate.opsForValue().set(request.key, request.value, Duration.of(request.ttl ?: 60, ChronoUnit.MINUTES))
+        val reqDto = RedisModelMapper.INSTANCE.toStringReqDto(request)
+        redisService.saveByString(reqDto)
     }
 }
