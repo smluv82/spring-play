@@ -8,8 +8,8 @@ CREATE TABLE brand
     used        tinyint(1) DEFAULT 1                   NOT NULL,
     created_at  datetime DEFAULT CURRENT_TIMESTAMP() NOT NULL,
     updated_at  datetime DEFAULT CURRENT_TIMESTAMP() NOT NULL ON UPDATE CURRENT_TIMESTAMP() COMMENT '수정일시',
-    deleted_at  datetime NULL '삭제일시',
-    v_activated tinyint(1) AS (`deleted_at` = NULL OR NULL <=> `deleted_at`),
+    deleted_at  datetime NULL COMMENT '삭제일시',
+    v_activated tinyint(1) AS (IF(deleted_at IS NULL, 1, 0)) VIRTUAL,
     CONSTRAINT uk_name_vactivated UNIQUE (name, v_activated)
 ) COMMENT '브랜드' CHARSET = utf8mb4;
 
@@ -29,7 +29,7 @@ CREATE TABLE manage_category
     created_by         varchar(100) DEFAULT ''                  NOT NULL COMMENT '등록자',
     updated_at         datetime     DEFAULT CURRENT_TIMESTAMP() NOT NULL ON UPDATE CURRENT_TIMESTAMP() COMMENT '수정일시',
     updated_by         varchar(100) DEFAULT ''                  NOT NULL COMMENT '수정자',
-    deleted_at  datetime NULL '삭제일시',
+    deleted_at  datetime NULL COMMENT '삭제일시'
 )
     COMMENT '관리 카테고리' CHARSET = utf8mb4;
 
@@ -49,14 +49,14 @@ CREATE TABLE product
     name            varchar(100)                             NOT NULL COMMENT '상품명',
     description     text NULL COMMENT '상품설명',
     model_no        varchar(100)                             NOT NULL COMMENT '모델 번호',
-    used            tinyint                                  NOT NULL '사용여부',
+    used            tinyint                                  NOT NULL COMMENT '사용여부',
     main_image_path varchar(255) NULL COMMENT '메인 이미지 URL',
     created_at      datetime     DEFAULT CURRENT_TIMESTAMP() NOT NULL COMMENT '등록일시',
     created_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '등록자',
     updated_at      datetime     DEFAULT CURRENT_TIMESTAMP() NOT NULL ON UPDATE CURRENT_TIMESTAMP() COMMENT '수정일시',
     updated_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '수정자',
-    deleted_at      datetime NULL '삭제일시',
-    v_activated     tinyint(1) AS (`deleted_at` = NULL OR NULL <=> `deleted_at`),
+    deleted_at      datetime NULL COMMENT '삭제일시',
+    v_activated     tinyint(1) AS (IF(deleted_at IS NULL, 1, 0)) VIRTUAL,
     CONSTRAINT uk_brandid_modelno_vactivated UNIQUE (brand_id, model_no, v_activated)
 ) COMMENT '상품' CHARSET = utf8mb4;
 
@@ -79,8 +79,8 @@ CREATE TABLE item
     created_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '등록자',
     updated_at      datetime     DEFAULT CURRENT_TIMESTAMP() NOT NULL ON UPDATE CURRENT_TIMESTAMP() COMMENT '수정일시',
     updated_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '수정자',
-    deleted_at      datetime NULL '삭제일시',
-    v_activated     tinyint(1) AS (`deleted_at` = NULL OR NULL <=> `deleted_at`),
+    deleted_at      datetime NULL COMMENT '삭제일시',
+    v_activated     tinyint(1) AS (IF(deleted_at IS NULL, 1, 0)) VIRTUAL,
     CONSTRAINT uk_productid_skucode_vactivated UNIQUE (product_id, sku_code, v_activated)
 ) COMMENT '아이템' CHARSET = utf8mb4;
 
@@ -97,7 +97,7 @@ CREATE TABLE item_inventory
     created_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '등록자',
     updated_at      datetime     DEFAULT CURRENT_TIMESTAMP() NOT NULL ON UPDATE CURRENT_TIMESTAMP() COMMENT '수정일시',
     updated_by      varchar(100) DEFAULT ''                  NOT NULL COMMENT '수정자',
-    deleted_at      datetime NULL '삭제일시',
-    v_activated     tinyint(1) AS (`deleted_at` = NULL OR NULL <=> `deleted_at`),
-    CONSTRAINT uk_brandid_modelno_vactivated UNIQUE (brand_id, model_no, v_activated)
+    deleted_at      datetime NULL COMMENT '삭제일시',
+    v_activated     tinyint(1) AS (IF(deleted_at IS NULL, 1, 0)) VIRTUAL,
+    CONSTRAINT uk_itemid_vactivated UNIQUE (item_id, v_activated)
 ) COMMENT '아이템 재고 관리' CHARSET = utf8mb4;
