@@ -2,6 +2,11 @@ spring:
   data:
     redis:
       host: localhost
-      port: 6389
+      port: 6379
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-play?charset=utf8
+    username: steven
+    password: password
 
 

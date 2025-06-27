@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
     kotlin("kapt") version "1.9.25"
-//    kotlin("plugin.jpa") version "1.9.25"
+    kotlin("plugin.jpa") version "1.9.25"
     id("org.springframework.boot") version "3.5.2"
     id("io.spring.dependency-management") version "1.1.7"
 }
@@ -30,7 +30,7 @@ subprojects {
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-//    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
     apply(plugin = "kotlin-kapt")
 
     java {
@@ -50,7 +50,7 @@ subprojects {
     val springCloudAwsVersion by extra("3.2.0")
     val awsVersion by extra("2.28.19")
 //    val sentryVersion by extra("7.15.0")
-//    val mysqlConnectorVersion by extra("9.0.0")
+    val mysqlConnectorVersion by extra("9.0.0")
     val kotlinLoggingVersion by extra("3.0.5")
     val commonsCollectionVersion by extra("4.4")
     val commonsIoVersion by extra("2.17.0")
@@ -73,7 +73,7 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.springframework.boot:spring-boot-starter-aop")
         implementation("org.springframework.boot:spring-boot-starter-data-redis")
-//        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //        implementation("org.springframework.boot:spring-boot-starter-security")
 //        implementation("org.springframework.security:spring-security-test")
 //        implementation("org.springframework.session:spring-session-data-redis")
@@ -113,7 +113,7 @@ subprojects {
 //        implementation("io.sentry:sentry-logback:${sentryVersion}")
 
         // db
-//        implementation("com.mysql:mysql-connector-j:${mysqlConnectorVersion}")
+        implementation("com.mysql:mysql-connector-j:${mysqlConnectorVersion}")
 
         // http client
         implementation("org.apache.httpcomponents.client5:httpclient5:${httpclientVersion}")
@@ -135,7 +135,7 @@ subprojects {
 
         //logging
         implementation("io.github.microutils:kotlin-logging-jvm:${kotlinLoggingVersion}")
-//        implementation("io.micrometer:micrometer-tracing-bridge-brave:${micrometerVersion}")
+        implementation("io.micrometer:micrometer-tracing-bridge-brave:${micrometerVersion}")
 
         // test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
