@@ -13,22 +13,22 @@ jar.enabled = true
 dependencies {
 
     // querydsl
-//    implementation("com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta")
-//    implementation("com.querydsl:querydsl-core:${queryDslVersion}")
-//    kapt("com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
+    implementation("com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta")
+    implementation("com.querydsl:querydsl-core:${queryDslVersion}")
+    kapt("com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
 
 }
 
-//allOpen {
-//    annotation("jakarta.persistence.Entity")
-//    annotation("jakarta.persistence.Embeddable")
-//    annotation("jakarta.persistence.MappedSuperclass")
-//}
+allOpen {
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.MappedSuperclass")
+}
 
-//val querydslSrcDir = "src/main/generated"
+val querydslSrcDir = "src/main/generated"
 
-//tasks {
-//    clean {
-//        delete(files(querydslSrcDir))
-//    }
-//}
+tasks {
+    clean {
+        delete(files(querydslSrcDir))
+    }
+}
