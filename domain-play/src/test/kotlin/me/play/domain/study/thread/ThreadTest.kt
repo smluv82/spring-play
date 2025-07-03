@@ -24,11 +24,12 @@ import kotlin.concurrent.withLock
 class ThreadBasicTest : FunSpec({
 
     test("Thread 클래스를 상속받아 실행") {
-        class StevenThread(private val threadName: String, val results: CopyOnWriteArrayList<String>): Thread() {
+        class StevenThread(private val threadName: String, val results: CopyOnWriteArrayList<String>) : Thread() {
             override fun run() {
                 results.add(threadName)
             }
         }
+
         /**
          * CopyOnWriteArrayList : 읽기 작업에서는 lock을 하지 않고, 쓰기 작업이 있는 경우 배열 전체를 복사해서 새로운 배열 쓰기 작업을 수행.
          * 즉 동시성을 보장한다. 이 말은, 쓰기 작업이 있을 때마다 새로운 배열을 생성하고, 기존 배열을 수정하지 않으므로 동시성을 보장함으로써
@@ -140,7 +141,7 @@ class ThreadSynchronizationTest : FunSpec({
 
 
     test("AtomicInteger를 사용하여 동기화 없이 증가 테스트") {
-        var atomicInteger = AtomicInteger(0)
+        val atomicInteger = AtomicInteger(0)
         val listSize = 1000
         val repeatTimes = 100
 
@@ -262,7 +263,11 @@ class ConcurrentThreadTest : StringSpec({
         val executor = Executors.newFixedThreadPool(4)
         (1..10).forEach { i ->
             executor.execute {
-                println("[${LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)}][$i] executed Thread name : ${Thread.currentThread().name}")
+                println(
+                    "[${
+                        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                    }][$i] executed Thread name : ${Thread.currentThread().name}"
+                )
                 Thread.sleep(1000)
             }
         }
@@ -275,7 +280,11 @@ class ConcurrentThreadTest : StringSpec({
 
         (1..10).forEach { i ->
             executor.execute {
-                println("[${LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)}][$i] executed Thread name : ${Thread.currentThread().name}")
+                println(
+                    "[${
+                        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                    }][$i] executed Thread name : ${Thread.currentThread().name}"
+                )
                 Thread.sleep(10)
             }
         }
@@ -307,7 +316,6 @@ class ConcurrentThreadTest : StringSpec({
 
         val future = executor.submit {
             Thread.sleep(2000)
-            "done"
         }
 
         shouldThrow<TimeoutException> {
