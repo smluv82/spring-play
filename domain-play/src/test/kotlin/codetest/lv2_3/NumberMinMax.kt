@@ -1,4 +1,4 @@
-package codetest.lv2
+package codetest.lv2_3
 
 /**
  * https://school.programmers.co.kr/learn/courses/30/lessons/12939

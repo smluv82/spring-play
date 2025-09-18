@@ -1,4 +1,4 @@
-package codetest.lv2;
+package codetest.lv2_3;
 
 import org.junit.jupiter.api.Test;
 

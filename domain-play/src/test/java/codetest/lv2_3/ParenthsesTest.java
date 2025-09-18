@@ -1,4 +1,4 @@
-package codetest.lv2;
+package codetest.lv2_3;
 
 /**
  * https://school.programmers.co.kr/learn/courses/30/lessons/12909?language=java
@@ -6,6 +6,23 @@ package codetest.lv2;
 public class ParenthsesTest {
 
 
+    public static void main(String[] args) {
+        ParenthsesTest p = new ParenthsesTest();
+        String input1 = "()()";
+        String input2 = "(())()";
+        String input3 = ")()(";
+        String input4 = "(()(";
+
+        boolean result1 = p.solution(input1);
+        boolean result2 = p.solution(input2);
+        boolean result3 = p.solution(input3);
+        boolean result4 = p.solution(input4);
+
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
+    }
 
     boolean solution(String s) {
         int count = 0;
@@ -20,7 +37,7 @@ public class ParenthsesTest {
                     return false;
             }
         }
-        return  count == 0;
+        return count == 0;
 
         // 스택으로 처리
 //        Stack<Character> stack = new Stack<Character>();
@@ -50,23 +67,5 @@ public class ParenthsesTest {
 //        }
 //
 //        return answer;
-    }
-
-    public static void main(String[] args) {
-        ParenthsesTest p = new ParenthsesTest();
-        String input1 = "()()";
-        String input2 = "(())()";
-        String input3 = ")()(";
-        String input4 = "(()(";
-
-        boolean result1 = p.solution(input1);
-        boolean result2 = p.solution(input2);
-        boolean result3 = p.solution(input3);
-        boolean result4 = p.solution(input4);
-
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
-        System.out.println(result4);
     }
 }
