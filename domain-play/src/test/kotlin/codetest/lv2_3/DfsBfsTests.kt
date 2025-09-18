@@ -3,6 +3,47 @@ package codetest.lv2_3
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
+class TargetNumberTest {
+
+    fun solution(numbers: IntArray, target: Int): Int {
+        fun dfs(index: Int, sum: Int): Int {
+            if (index == numbers.size) {
+                return if (sum == target) 1 else 0
+            }
+
+            val plus = dfs(index + 1, sum + numbers[index])
+            val minus = dfs(index + 1, sum - numbers[index])
+
+            return plus + minus
+        }
+
+        return dfs(0, 0)
+    }
+
+
+    @Test
+    fun test1() {
+        val numbers = intArrayOf(1, 1, 1, 1, 1)
+        val target = 3
+
+        val result = solution(numbers, target)
+
+        assertThat(result).isEqualTo(5)
+    }
+
+
+    @Test
+    fun test2() {
+        val numbers = intArrayOf(4, 1, 2, 1)
+        val target = 4
+
+        val result = solution(numbers, target)
+
+        assertThat(result).isEqualTo(2)
+    }
+}
+
+
 /**
  * https://school.programmers.co.kr/learn/courses/30/lessons/43162
  */
