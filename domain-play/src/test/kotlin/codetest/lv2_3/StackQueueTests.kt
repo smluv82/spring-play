@@ -62,3 +62,57 @@ class ProgressSpeedTest {
     }
 
 }
+
+
+/**
+ * https://school.programmers.co.kr/learn/courses/30/lessons/42587
+ */
+class ProcessTest {
+
+
+    fun solution(priorities: IntArray, location: Int): Int {
+        val queue = ArrayDeque<Map<Int, Int>>(priorities.size)
+        for ((index, value) in priorities.withIndex()) {
+            queue.addLast(mapOf(value to index))
+        }
+
+        var count = 1
+        while (queue.isNotEmpty()) {
+            val maxData = queue.maxOf { it.keys.first() }
+            val data = queue.removeFirst()
+            if (data.keys.first() == maxData) {
+                if (location == data.values.first()) {
+                    break
+                } else {
+                    count++
+                }
+            } else {
+                queue.addLast(data)
+            }
+        }
+
+        return count
+    }
+
+
+    @Test
+    fun test1() {
+        val priorities = intArrayOf(2, 1, 3, 2)
+        val location = 2
+
+        val result = solution(priorities, location)
+
+        assertThat(result).isEqualTo(1)
+    }
+
+
+    @Test
+    fun test2() {
+        val priorities = intArrayOf(1, 1, 9, 1, 1, 1)
+        val location = 0
+
+        val result = solution(priorities, location)
+
+        assertThat(result).isEqualTo(5)
+    }
+}

@@ -6,6 +6,9 @@ import java.util.Stack;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+/**
+ * https://school.programmers.co.kr/learn/courses/30/lessons/12973?language=java
+ */
 public class MatchDeleteTest {
 
     // 정확성은 맞지만, 효율성 통과하지 못함.
