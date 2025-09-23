@@ -1,7 +1,5 @@
 # VirtualThread
 
-## 기존 쓰레드, VirtualThread 특징
-
 1. 기존 Thread 개념 및 한계
 
 - 기존 자바 Thread는 JVM에서 사용하는 Platform Thread와 OS 커널의 OS Thread와 1:1 매핑
