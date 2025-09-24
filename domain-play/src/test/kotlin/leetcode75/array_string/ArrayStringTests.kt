@@ -109,3 +109,45 @@ class GreatestCommonDivisorOfStringsTest {
         assertThat(result).isEqualTo("")
     }
 }
+
+
+/**
+ * https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/description/?envType=study-plan-v2&envId=leetcode-75
+ */
+class KidsWithTheGreatestNumberOfCandiesTest {
+    fun solution(candies: IntArray, extraCandies: Int): List<Boolean> {
+        val maxValue = candies.max()
+        return candies.map { it + extraCandies >= maxValue }.toList()
+    }
+
+
+    @Test
+    fun test1() {
+        val candies = intArrayOf(2, 3, 5, 1, 3)
+        val extraCandies = 3
+
+        val result = solution(candies, extraCandies)
+
+        assertThat(result).isEqualTo(listOf(true, true, true, false, true))
+    }
+
+    @Test
+    fun test2() {
+        val candies = intArrayOf(4, 2, 1, 1, 2)
+        val extraCandies = 1
+
+        val result = solution(candies, extraCandies)
+
+        assertThat(result).isEqualTo(listOf(true, false, false, false, false))
+    }
+
+    @Test
+    fun test3() {
+        val candies = intArrayOf(12, 1, 12)
+        val extraCandies = 10
+
+        val result = solution(candies, extraCandies)
+
+        assertThat(result).isEqualTo(listOf(true, false, true))
+    }
+}
