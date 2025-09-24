@@ -7,7 +7,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureTimeMillis
 
-class VirtualThreadTest {
+class VirtualThreadTests {
 
 
     @Test

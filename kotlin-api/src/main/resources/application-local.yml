@@ -5,7 +5,7 @@ spring:
       port: 6379
 
   datasource:
-    url: jdbc:mysql://localhost:3306/spring-play?charset=utf8
+    url: jdbc:mysql://localhost:3307/spring-play?charset=utf8
     username: steven
     password: password
 
