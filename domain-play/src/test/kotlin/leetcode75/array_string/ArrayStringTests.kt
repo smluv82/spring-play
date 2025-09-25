@@ -151,3 +151,180 @@ class KidsWithTheGreatestNumberOfCandiesTest {
         assertThat(result).isEqualTo(listOf(true, false, true))
     }
 }
+
+
+/**
+ * https://leetcode.com/problems/can-place-flowers/description/?envType=study-plan-v2&envId=leetcode-75
+ */
+class CanPlaceFlowersTest {
+
+    fun solution(flowerbed: IntArray, n: Int): Boolean {
+        var count = 0
+        var i = 0
+
+        if (flowerbed.size == 1) {
+            if (flowerbed[0] == 0) {
+                count++
+            }
+            return count >= n
+        }
+
+        while (i < flowerbed.size) {
+            if (i == 0) {
+                if (flowerbed[i] == 0 && flowerbed[i + 1] == 0) {
+                    count++
+                    i += 2
+                } else {
+                    i++
+                }
+            } else {
+                if (i + 1 < flowerbed.size) {
+                    if (flowerbed[i] == 0 && flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
+                        count++
+                        i += 2
+                    } else {
+                        i++
+                    }
+                } else {
+                    if (flowerbed[i] == 0 && flowerbed[i - 1] == 0) {
+                        count++
+                        i += 2
+                    } else {
+                        i++
+                    }
+                }
+            }
+        }
+
+        return count >= n
+    }
+
+
+    @Test
+    fun test1() {
+        val flowerbed = intArrayOf(1, 0, 0, 0, 1)
+        val n = 1
+
+        val result = solution(flowerbed, n)
+
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun test2() {
+        val flowerbed = intArrayOf(1, 0, 0, 0, 1)
+        val n = 2
+
+        val result = solution(flowerbed, n)
+
+        assertThat(result).isFalse()
+    }
+
+    @Test
+    fun test3() {
+        val flowerbed = intArrayOf(1, 0, 0, 0, 1, 0, 0)
+        val n = 2
+
+        val result = solution(flowerbed, n)
+
+        assertThat(result).isTrue()
+    }
+
+
+    @Test
+    fun test4() {
+        val flowerbed = intArrayOf(
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        )
+        val n = 17
+
+        val result = solution(flowerbed, n)
+
+        assertThat(result).isFalse()
+    }
+}
