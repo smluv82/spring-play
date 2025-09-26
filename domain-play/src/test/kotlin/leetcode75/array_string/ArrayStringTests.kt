@@ -328,3 +328,93 @@ class CanPlaceFlowersTest {
         assertThat(result).isFalse()
     }
 }
+
+
+/**
+ * https://leetcode.com/problems/reverse-vowels-of-a-string/description/?envType=study-plan-v2&envId=leetcode-75
+ */
+class ReverseVowelsOfStringTest {
+
+    private val VOWELS = setOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+
+    fun solution(s: String): String {
+        // 밑의 주석 친게 내가 푼것인데, 속도가 느림. O(n2)
+//        val result = StringBuilder()
+//        var max = s.length
+//
+//        for (i in s.indices) {
+//            if (s[i] in VOWELS) {
+//                for (j in s.length downTo 1) {
+//                    if (j > max)
+//                        continue
+//
+//                    if (s[j - 1] in VOWELS) {
+//                        result.append(s[j - 1])
+//                        max = j - 1
+//                        break
+//                    }
+//                }
+//            } else {
+//                result.append(s[i])
+//            }
+//        }
+//
+//        return result.toString()
+
+
+        // O(n), 투 포인터 기법
+        val chars = s.toCharArray()
+        var left = 0
+        var right = s.length - 1
+
+        while (left < right) {
+            // Find the next vowel from the left
+            while (left < right && chars[left] !in VOWELS) {
+                left++
+            }
+            // Find the next vowel from the right
+            while (left < right && chars[right] !in VOWELS) {
+                right--
+            }
+            // Swap vowels
+            if (left < right) {
+                val temp = chars[left]
+                chars[left] = chars[right]
+                chars[right] = temp
+                left++
+                right--
+            }
+        }
+
+        return String(chars)
+    }
+
+
+    @Test
+    fun test1() {
+        val s = "IceCreAm"
+
+        val result = solution(s)
+
+        assertThat(result).isEqualTo("AceCreIm")
+    }
+
+
+    @Test
+    fun test2() {
+        val s = "leetcode"
+
+        val result = solution(s)
+
+        assertThat(result).isEqualTo("leotcede")
+    }
+
+    @Test
+    fun test3() {
+        val s = "Ui"
+
+        val result = solution(s)
+
+        assertThat(result).isEqualTo("iU")
+    }
+}
