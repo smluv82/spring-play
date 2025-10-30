@@ -19,20 +19,53 @@ public class No66_PlusOneTest {
      * - 아래와 같이 하면 오류나면서 안됨.
      * (TODO 다시 풀자)
      */
+//    int[] solution(int[] digits) {
+//
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < digits.length; i++) {
+//            sb.append(digits[i]);
+//        }
+//        String digit = String.valueOf(Long.parseLong(sb.toString()) + 1);
+//
+//        int[] result = new int[digit.length()];
+//        for (int i = 0; i < digit.length(); i++) {
+//            result[i] = digit.charAt(i) - '0';
+//        }
+//
+//        return result;
+//    }
+
+
+    /**
+     * 덧셈 알고리즘의 CARRY를 이용하자.
+     * CARRY의 값은 문제에서 나온 +1
+     * CARRY의 값을 변형하여 배열을 추가할지 말지 정함 (CARRY = 1 자리수 증가, CARRY = 0 자리수 증가 X)
+     */
     int[] solution(int[] digits) {
+        int carry = 1;
+        int len = digits.length;
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < digits.length; i++) {
-            sb.append(digits[i]);
+        for (int i = len - 1; i >= 0; i--) {
+            int sum = digits[i] + carry;
+            if (sum == 10) {
+                digits[i] = 0;
+            } else {
+                digits[i] = sum;
+                carry = 0;
+                break;
+            }
         }
-        String digit = String.valueOf(Long.parseLong(sb.toString()) + 1);
 
-        int[] result = new int[digit.length()];
-        for (int i = 0; i < digit.length(); i++) {
-            result[i] = digit.charAt(i) - '0';
+        if (carry == 1) {
+            int[] result = new int[len + 1];
+            result[0] = 1;
+            for (int i = 1; i <= len; i++) {
+                result[i] = digits[i - 1];
+            }
+            return result;
+        } else {
+            return digits;
         }
-
-        return result;
     }
 
 
