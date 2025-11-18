@@ -5,7 +5,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     kotlin("kapt") version "1.9.25"
     kotlin("plugin.jpa") version "1.9.25"
-    id("org.springframework.boot") version "3.5.2"
+    id("org.springframework.boot") version "3.5.7"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -82,6 +82,9 @@ subprojects {
         // kotlin
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+        // kotlin-corutine
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
         // swagger
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}")
