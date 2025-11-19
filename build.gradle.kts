@@ -60,6 +60,7 @@ subprojects {
     val slackClientVersion by extra("1.43.1")
 //    val kotlinJdslVersion by extra("3.5.2")
     val httpclientVersion by extra("5.4.3")
+    val coroutinesVersion by extra("1.10.2")
 
     dependencies {
         // BOM
@@ -84,7 +85,7 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
 
         // kotlin-corutine
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}")
 
         // swagger
         implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:${swaggerVersion}")
@@ -147,6 +148,7 @@ subprojects {
         testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
         testImplementation("io.kotest:kotest-property-jvm:5.9.1")
         testImplementation("io.mockk:mockk:1.13.17")
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}")
     }
 
     kapt {
