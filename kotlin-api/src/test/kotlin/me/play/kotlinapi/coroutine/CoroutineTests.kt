@@ -6,7 +6,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 
-class CoroutineTest {
+class CoroutineTests {
     @Test
     fun firstCoroutine() {
         // 코루틴으로 메인쓰레드 블로킹 후 안쪽의 구문을 다 실행 후 메인 이후를 실행함

@@ -4,7 +4,7 @@ import kotlinx.coroutines.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class CoroutineDispatcherTest {
+class CoroutineDispatcherTests {
 
 
     @DisplayName("싱글스레드 코루틴 디스패처")
