@@ -1,4 +1,4 @@
-package me.play.kotlinapi.coroutine
+package me.play.domain.study.coroutine
 
 import kotlinx.coroutines.*
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
